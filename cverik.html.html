@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Alif Saputra</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --white: #ffffff;
+            --dark-red: #8B0000;
+            --red: #DC143C;
+            --light-red: #FF6B6B;
+            --dark-bg: #1a1a1a;
+            --gray: #666;
+            --light-gray: #f8f9fa;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: var(--dark-bg);
+            box-shadow: 0 2px 20px rgba(139, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8 rem;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--red);
+        }
+
+        /* Hero */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--dark-red) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--white), var(--light-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: var(--light-red);
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--dark-red);
+        }
+
+        /* KOTAK PENGALAMAN - DIBUAT LEBIH MENONjol */
+        #portfolio {
+            background: var(--white);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-item {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border: 3px solid #f5f5f5;
+            border-radius: 25px;
+            padding: 2.5rem 2rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            min-height: 220px;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--dark-red), var(--red), var(--light-red));
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--red);
+            box-shadow: 0 25px 50px rgba(220, 20, 60, 0.25);
+            background: linear-gradient(145deg, #fffefe, #ffffff);
+        }
+
+        .portfolio-item h3 {
+            color: var(--dark-red);
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .portfolio-item .company {
+            color: var(--red);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-item .date {
+            color: #888;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+        }
+
+        .portfolio-item p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        .portfolio-item i {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            color: var(--light-red);
+            font-size: 1.8rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover i {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+
+        /* MODAL DETAIL PENGALAMAN */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 5% auto;
+            padding: 3rem;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 2rem;
+            top: 2rem;
+            color: var(--gray);
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .close:hover {
+            color: var(--dark-red);
+            transform: rotate(90deg);
+        }
+
+        .modal h2 {
+            color: var(--dark-red);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+        }
+
+        .modal .company {
+            color: var(--red);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .modal ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 2rem 0;
+        }
+
+        .modal li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .modal li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* CONTACT - DENGAN ALAMAT LENGKAP */
+        #contact {
+            background: linear-gradient(135deg, var(--dark-bg), var(--dark-red));
+            color: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(220, 20, 60, 0.3);
+        }
+
+        .contact-card i {
+            font-size: 3rem;
+            color: var(--light-red);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-card h3 {
+            color: var(--white);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .contact-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+/* FIX CENTER HERO */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* FOTO PROFIL UPGRADE */
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 2rem;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(45deg, var(--dark-red), var(--red), var(--light-red));
+    box-shadow: 0 15px 40px rgba(220, 20, 60, 0.6);
+    transition: all 0.4s ease;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+}
+
+/* HOVER EFFECT */
+.profile-photo:hover {
+    transform: scale(1.08) rotate(2deg);
+    box-shadow: 0 20px 60px rgba(220, 20, 60, 0.9);
+}
+
+/* ANIMASI MASUK */
+.profile-photo {
+    animation: fadeZoom 1s ease;
+}
+
+@keyframes fadeZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.about-box {
+    background: linear-gradient(145deg, #ffffff, #f3f3f3);
+    border-radius: 25px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border: 2px solid #f0f0f0;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* garis atas biar keren */
+.about-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--dark-red), var(--red), var(--light-red));
+}
+
+/* hover effect */
+.about-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(220, 20, 60, 0.25);
+    border-color: var(--red);
+}
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-container">
+            <a href="#hero" class="logo"><span></span></a>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#portfolio" class="nav-link">Pengalaman</a></li>
+                <li><a href="#contact" class="nav-link">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+  <section id="hero">
+    <div class="hero-content">
+
+        <!-- FOTO PROFIL -->
+        <div class="profile-photo">
+            <img src="profil.jpeg" alt="Foto Profil">
+        </div>
+
+        <h1>Muhamad Alip Saputra</h1>
+        <p>3 Tahun Pengalaman</p>
+            <a href="#portfolio" class="cta-button">Lihat Pengalaman Kerja</a>
+ <p></p>
+            <a href="#contact" class="cta-button">Lihat Kontak</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <h2 class="section-title">Tentang Saya</h2>
+        <div class="about-box" style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="font-size: 1.3rem; color: var(--gray); line-height: 1.8;">
+               mampu membuat kue bakery, mampu bekerja dalam tim, mampu melayani costumer dengan bijak dan sabar
+            </p>
+        </div>
+    </section>
+
+    <!-- PENGALAMAN KERJA - KOTAK KOTAK MENONjol -->
+    <section id="portfolio">
+        <h2 class="section-title">Pengalaman Kerja</h2>
+        <div class="portfolio-grid">
+            <!-- KOTAK 1 -->
+            <div class="portfolio-item" data-modal="modal1">
+                <i class="fas fa-briefcase"></i>
+                <h3>Pembuatan kue bakery</h3>
+                <div class="company">Tanggerang selatan bakery</div>
+                <div class="date">Jan 2023 - Agustus (7 Bulan)</div>
+                <p>Bagian Produksi kue </p>
+            </div>
+
+            <!-- KOTAK 2 -->
+            <div class="portfolio-item" data-modal="modal2">
+                <i class="fas fa-briefcase"></i>
+                <h3>Kedai Ciputat</h3>
+                <div class="company">Kedai ciputat</div>
+                <div class="date">September 2023 - Des 2023 (4 Bulan)</div>
+                <p>Produksi makanan bagian memasak dan sekaligus menjadi waiters</p>
+            </div>
+
+            <!-- KOTAK 3 -->
+            <div class="portfolio-item" data-modal="modal3">
+                <i class="fas fa-briefcase"></i>
+                <h3>Mie ayam & Bakso</h3>
+                <div class="company">Mie ayam & Bakso Tanjung Priok</div>
+                <div class="date">juni 2024 - November 2024(4 Bulan)</div>
+                <p>Bagian Produksi membuat baso dan mie ayam mentah</p>
+            </div>
+
+            <!-- KOTAK 4 -->
+            <div class="portfolio-item" data-modal="modal4">
+                <i class="fas fa-briefcase"></i>
+                <h3>Waiters titik seduh</h3>
+                <div class="company">Titik seduh caffe</div>
+                <div class="date">Desember 2025 - Maret 2026 (6 bulan)</div>
+                <p>melayani costumer dengan bijak, sopan dan sabar selama 4 bulan</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT DENGAN ALAMAT LENGKAP -->
+    <section id="contact">
+        <h2 class="section-title" style="color: var(--white);">Kontak & Lokasi</h2>
+        <div class="contact-grid">
+            <!-- Email -->
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>erik@gmail.com<br>
+                   rizki.ahmad@email.com</p>
+            </div>
+
+            <!-- Telepon -->
+            <div class="contact-card">
+                <i class="fas fa-phone"></i>
+                <h3>Telepon</h3>
+                <p>+62 857-1747-4922</p>
+            </div>
+
+            <!-- Alamat -->
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Alamat</h3>
+                <p>Amanah Asri Blok A Desa suka makmur<br>
+                   Kecamatan Leuwiliang Kabupaten Bogor<br>
+                   Bogor, Jawa Barat </p>
+            </div>
+
+            <!-- Social -->
+            <div class="contact-card">
+                <i class="fas fa-globe"></i>
+                <h3>Social Media</h3>
+                <p>Instagram: erik_alputraa<br>
+                   WhatsApp: +62 857-1747-4922</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DETAIL PENGALAMAN -->
+    <!-- Modal 1 -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Senior Full Stack Developer</h2>
+            <div class="company">PT. Teknologi Inovasi Digital</div>
+            <div class="date">Januari 2022 - Sekarang</div>
+            <ul>
+                <li>Memimpin tim 5 developer untuk e-commerce platform</li>
+                <li>Mengembangkan microservices dengan Node.js + Express</li>
+                <li>Database optimization MongoDB (query 3x lebih cepat)</li>
+                <li>Deploy ke AWS dengan Docker & Kubernetes</li>
+                <li>Real-time features dengan Socket.io & Redis</li>
+            </ul>
+            <p><strong>Tech Stack:</strong> React, Node.js, MongoDB, Redis, Docker, AWS</p>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Frontend Developer</h2>
+            <div class="company">Startup Fintech ABC</div>
+            <div class="date">Juni 2020 - Desember 2021</div>
+            <ul>
